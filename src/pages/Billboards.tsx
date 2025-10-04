@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { MapPin, Filter, Plus, Search, Edit, Download, Printer, Wrench } from 'lucide-react';
+import { MapPin, Filter, Plus, Search, CreditCard as Edit, Download, Printer, Wrench } from 'lucide-react';
 import { BillboardGridCard } from '@/components/BillboardGridCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList, CommandEmpty } from '@/components/ui/command';

@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { Wrench, Search, Printer, Plus, Edit, Trash2, CheckCircle, Clock } from 'lucide-react';
+import { Wrench, Search, Printer, Plus, CreditCard as Edit, Trash2, CircleCheck as CheckCircle, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface MaintenanceRecord {

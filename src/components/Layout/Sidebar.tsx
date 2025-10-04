@@ -1,4 +1,4 @@
-import { Home, Settings, Users, Calendar, DollarSign, BarChart3, MapPin, FileText, LogOut, Wrench } from 'lucide-react';
+import { Chrome as Home, Settings, Users, Calendar, DollarSign, ChartBar as BarChart3, MapPin, FileText, LogOut, Wrench } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
