@@ -5,7 +5,20 @@ import { getAllPricing as fetchAllPricing } from '@/services/pricingService';
 export type { CustomerType, LevelType } from '@/services/pricingService';
 
 // تحميل بيانات الأسعار مرة واحدة عند تشغيل التطبيق
-const PRICING_CACHE: any[] = await fetchAllPricing().catch(() => []);
+let PRICING_CACHE: any[] = [];
+let PRICING_LOADED = false;
+
+async function ensurePricingLoaded() {
+  if (!PRICING_LOADED) {
+    PRICING_CACHE = await fetchAllPricing().catch(() => []);
+    PRICING_LOADED = true;
+  }
+  return PRICING_CACHE;
+}
+
+// تهيئة فورية
+ensurePricingLoaded();
+
 export const PRICING = PRICING_CACHE;
 
 function canonSize(size: string): string {
@@ -91,4 +104,5 @@ export async function getCustomerCategories(): Promise<string[]> {
   }
 }
 
-export const CUSTOMERS = await getCustomerCategories().catch(() => ['عادي', 'المدينة', 'مسوق', 'شركات']);
+// استخدام القيمة الافتراضية مباشرة
+export const CUSTOMERS = ['عادي', 'المدينة', 'مسوق', 'شركات'];

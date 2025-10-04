@@ -1,4 +1,4 @@
-import { Home, Settings, Users, Calendar, DollarSign, BarChart3, MapPin, FileText, LogOut } from 'lucide-react';
+import { Home, Settings, Users, Calendar, DollarSign, BarChart3, MapPin, FileText, LogOut, Wrench } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const sidebarItems = [
   { id: 'dashboard', label: 'الرئيسية', icon: Home, path: '/admin' },
   { id: 'billboards', label: 'إدارة اللوحات', icon: MapPin, path: '/admin/billboards' },
+  { id: 'maintenance', label: 'لوحات الصيانة', icon: Wrench, path: '/admin/maintenance' },
   { id: 'booking_requests', label: 'طلبات الحجز', icon: FileText, path: '/admin/booking-requests' },
   { id: 'shared_billboards', label: 'اللوحات المشتركة', icon: FileText, path: '/admin/shared-billboards' },
   { id: 'shared_companies', label: 'الشركات المشاركة', icon: FileText, path: '/admin/shared-companies' },

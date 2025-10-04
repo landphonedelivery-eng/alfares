@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { MapPin, Filter, Plus, Search, Edit, Download, Printer } from 'lucide-react';
+import { MapPin, Filter, Plus, Search, Edit, Download, Printer, Wrench } from 'lucide-react';
 import { BillboardGridCard } from '@/components/BillboardGridCard';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandGroup, CommandInput, CommandItem, CommandList, CommandEmpty } from '@/components/ui/command';
@@ -536,6 +536,29 @@ export default function Billboards() {
     }
   }, [editForm.Billboard_Name]);
 
+  const addToMaintenance = async (billboard: Billboard) => {
+    try {
+      const billboardId = (billboard as any).ID ?? (billboard as any).id;
+      const billboardName = (billboard as any).Billboard_Name ?? billboard.name;
+
+      if (!confirm(`هل تريد إضافة اللوحة "${billboardName}" إلى قائمة الصيانة؟`)) return;
+
+      const { error } = await supabase.from('maintenance').insert({
+        billboard_id: Number(billboardId),
+        reason: 'صيانة عامة',
+        status: 'in_progress',
+        start_date: new Date().toISOString(),
+      });
+
+      if (error) throw error;
+
+      toast.success(`تم إضافة اللوحة "${billboardName}" إلى قائمة الصيانة`);
+    } catch (error: any) {
+      console.error('Error adding to maintenance:', error);
+      toast.error('فشل في إضافة اللوحة إلى قائمة الصيانة');
+    }
+  };
+
   const addBillboard = async () => {
     // Validate required fields
     if (!addForm.Municipality || !addForm.Level || !addForm.Size) {
@@ -822,6 +845,15 @@ export default function Billboards() {
                 <Button variant="outline" size="sm" className="flex-1" onClick={() => openEdit(billboard)}>
                   <Edit className="h-4 w-4 ml-1" />
                   تعديل
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 border-yellow-500 text-yellow-500 hover:bg-yellow-500/10"
+                  onClick={() => addToMaintenance(billboard)}
+                >
+                  <Wrench className="h-4 w-4 ml-1" />
+                  صيانة
                 </Button>
                 <Button variant="destructive" size="sm" onClick={async () => {
                   try {

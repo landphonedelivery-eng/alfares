@@ -51,17 +51,21 @@
     --gradient-secondary: linear-gradient(135deg, hsl(42 87% 25%), hsl(45 93% 58%));
     --gradient-dark: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 15%));
     --gradient-luxury: linear-gradient(135deg, hsl(0 0% 8%) 0%, hsl(42 87% 25%) 50%, hsl(45 93% 58%) 100%);
-    
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 12%) 0%, hsl(0 0% 10%) 100%);
+
     /* ظلال فاخرة */
     --shadow-gold: 0 10px 30px -5px hsl(45 93% 58% / 0.3);
     --shadow-luxury: 0 20px 60px -10px hsl(45 93% 58% / 0.4);
     --shadow-card: 0 8px 25px -5px hsl(0 0% 0% / 0.6);
-    
+    --shadow-elegant: 0 4px 15px -2px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 20px hsl(45 93% 58% / 0.3);
+
     /* انتقالات ناعمة */
     --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s ease-in-out;
     --transition-glow: all 0.3s ease-in-out;
 
-    /* ظلال أخرى */
+    /* ظلال الشريط الجانبي */
     --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 45 30% 65%;
     --sidebar-primary: 45 93% 58%;
@@ -70,6 +74,14 @@
     --sidebar-accent-foreground: 45 93% 85%;
     --sidebar-border: 42 20% 25%;
     --sidebar-ring: 45 93% 58%;
+
+    /* ألوان إضافية للحالات */
+    --green: 120 60% 50%;
+    --yellow: 45 90% 60%;
+    --red: 0 80% 60%;
+    --orange: 25 95% 53%;
+    --purple: 270 95% 60%;
+    --blue: 210 95% 60%;
   }
 }
 
@@ -80,5 +92,500 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+
+  /* تحسين النصوص العربية */
+  html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* تحسين العناوين */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+/* فئات CSS للألوان الإضافية */
+@layer utilities {
+  .text-green {
+    color: hsl(var(--green));
+  }
+
+  .text-yellow {
+    color: hsl(var(--yellow));
+  }
+
+  .text-red {
+    color: hsl(var(--red));
+  }
+
+  .text-orange {
+    color: hsl(var(--orange));
+  }
+
+  .text-purple {
+    color: hsl(var(--purple));
+  }
+
+  .text-blue {
+    color: hsl(var(--blue));
+  }
+
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .bg-gradient-luxury {
+    background: var(--gradient-luxury);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-luxury {
+    transition: var(--transition-luxury);
+  }
+}
+
+/* تحسين النوافذ المنبثقة */
+.system-dialog {
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.system-dialog-header {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  padding: 16px 24px;
+  border-radius: 8px 8px 0 0;
+}
+
+.system-dialog-title {
+  color: #FFD700;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: right;
+  direction: rtl;
+}
+
+.system-dialog-content {
+  padding: 24px;
+  color: #E5E5E5;
+  text-align: right;
+  direction: rtl;
+}
+
+.system-dialog-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.system-btn-primary {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.system-btn-primary:hover {
+  background: linear-gradient(135deg, #FFA500, #FFD700);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.system-btn-secondary {
+  background: rgba(60, 60, 60, 0.8);
+  color: #E5E5E5;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.system-btn-secondary:hover {
+  background: rgba(80, 80, 80, 0.8);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+/* تحسين window.confirm */
+.custom-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-confirm-dialog {
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.2);
+  min-width: 400px;
+  max-width: 500px;
+}
+
+/* Expenses Page Styles */
+.expenses-container {
+  @apply space-y-6;
+  direction: rtl;
+}
+
+.expenses-stats-grid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4;
+}
+
+.expenses-stat-card {
+  @apply p-6;
+}
+
+.expenses-stat-content {
+  @apply flex items-center justify-between;
+}
+
+.expenses-stat-text {
+  @apply text-sm font-medium text-muted-foreground;
+}
+
+.expenses-stat-value {
+  @apply text-2xl font-bold;
+}
+
+.expenses-stat-icon {
+  @apply h-8 w-8;
+}
+
+.expenses-actions {
+  @apply flex gap-4;
+}
+
+.expenses-action-btn {
+  @apply flex items-center gap-2;
+}
+
+/* Preview Card Styles */
+.expenses-preview-card {
+  @apply border-2 border-primary/30 bg-gradient-to-br from-card to-primary/10 shadow-lg rounded-lg;
+}
+
+.expenses-preview-title {
+  @apply text-xl font-bold text-primary text-center;
+}
+
+.expenses-preview-grid {
+  @apply grid grid-cols-1 md:grid-cols-4 gap-6;
+}
+
+.expenses-preview-item {
+  @apply bg-card/80 backdrop-blur-sm rounded-lg p-4 shadow-md border border-primary/20;
+}
+
+.expenses-preview-label {
+  @apply text-sm font-semibold text-primary mb-2;
+}
+
+.expenses-preview-value {
+  @apply text-2xl font-bold text-foreground;
+}
+
+.expenses-preview-text {
+  @apply text-sm font-medium text-muted-foreground;
+}
+
+.expenses-table-container {
+  @apply overflow-x-auto;
+}
+
+.expenses-contract-number {
+  @apply font-medium;
+}
+
+.expenses-amount-calculated {
+  @apply font-medium text-primary;
+}
+
+.expenses-amount-excluded {
+  @apply text-muted-foreground line-through;
+}
+
+.expenses-actions-cell {
+  @apply flex items-center gap-2;
+}
+
+.expenses-dialog-content {
+  @apply max-w-md;
+}
+
+.expenses-dialog-form {
+  @apply space-y-4;
+}
+
+.expenses-form-label {
+  @apply text-sm font-medium;
+}
+
+.expenses-form-grid {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.expenses-loading {
+  @apply flex items-center justify-center h-64;
+  direction: rtl;
+}
+
+.expenses-loading-spinner {
+  @apply h-6 w-6 animate-spin ml-2;
+}
+
+.expenses-empty-state {
+  @apply text-center text-muted-foreground;
+}
+
+/* Custom Colors for Expenses */
+.stat-blue {
+  @apply text-blue-400;
+}
+
+.stat-green {
+  @apply text-green-400;
+}
+
+.stat-red {
+  @apply text-red-400;
+}
+
+.stat-purple {
+  @apply text-purple-400;
+}
+
+/* فئات إضافية للبطاقات والتفاعلات */
+.card-elegant {
+  @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow;
+}
+
+.card-hover {
+  @apply hover:bg-muted/50 transition-colors cursor-pointer;
+}
+
+.btn-primary {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth;
+}
+
+.section-header {
+  @apply text-2xl font-bold text-foreground mb-4;
+}
+
+.text-muted {
+  @apply text-muted-foreground;
+}
+
+/* تحسينات للجداول */
+.table-elegant {
+  @apply w-full border-collapse bg-card rounded-lg overflow-hidden;
+}
+
+.table-elegant th {
+  @apply bg-muted text-foreground font-semibold p-3 text-right border-b border-border;
+}
+
+.table-elegant td {
+  @apply p-3 text-right border-b border-border/50;
+}
+
+.table-elegant tr:hover {
+  @apply bg-muted/30 transition-colors;
+}
+
+/* تحسينات للنماذج */
+.form-elegant {
+  @apply space-y-4;
+}
+
+.form-label-elegant {
+  @apply text-sm font-medium text-foreground mb-1 block;
+}
+
+.form-input-elegant {
+  @apply w-full px-3 py-2 bg-input border border-border rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-smooth;
+}
+
+/* Badges محسنة */
+.badge-success {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-500 border border-green-500/30;
+}
+
+.badge-warning {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-500 border border-yellow-500/30;
+}
+
+.badge-danger {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-500/20 text-red-500 border border-red-500/30;
+}
+
+.badge-info {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-500/20 text-blue-500 border border-blue-500/30;
+}
+
+/* Scrollbar محسن */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .expenses-stats-grid {
+    @apply grid-cols-1;
+  }
+
+  .expenses-preview-grid {
+    @apply grid-cols-2;
+  }
+
+  .expenses-actions {
+    @apply flex-col;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .expenses-actions,
+  .expenses-dialog-content,
+  .no-print {
+    @apply hidden;
+  }
+
+  .expenses-table-container {
+    @apply overflow-visible;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .bg-gradient-card,
+  .card-elegant {
+    background: white !important;
+    border: 1px solid #ddd !important;
+  }
+}
+
+/* Loading Spinner محسن */
+@keyframes spin-elegant {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-elegant {
+  animation: spin-elegant 1s linear infinite;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
 }
